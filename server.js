@@ -34,7 +34,7 @@ app.use(postPath.default, router);
 // twilio message comes in
 const twilio_voice_instance = new twilio_voice();
 
-router.post(postPath.default, twilio_voice_instance.handleInboundCalls());
+router.all(postPath.default, twilio_voice_instance.handleInboundCalls());
 
 router.post(postPath.outbound_call, twilio_voice_instance.handleOutboundCalls());
 
