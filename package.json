@@ -1,0 +1,32 @@
+{
+  "name": "twilio-voiceit-teneo-cgi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "dependencies": {
+    "async-redis": "^1.1.7",
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "http": "^0.0.0",
+    "path": "^0.12.7",
+    "querystring": "^0.2.0",
+    "redis": "^3.0.2",
+    "twilio": "^3.49.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/max-schmidt92/Twilio-VoiceIt-Teneo-CGI.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/max-schmidt92/Twilio-VoiceIt-Teneo-CGI/issues"
+  },
+  "homepage": "https://github.com/max-schmidt92/Twilio-VoiceIt-Teneo-CGI#readme"
+}
