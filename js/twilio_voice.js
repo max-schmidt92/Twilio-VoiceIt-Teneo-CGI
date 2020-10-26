@@ -10,7 +10,8 @@ const {
     LANGUAGE_STT,
     LANGUAGE_TTS,
     TWILIO_ACCOUNT_SID,
-    TWILIO_AUTH_TOKEN
+    TWILIO_AUTH_TOKEN,
+    TWILIO_OUTBOUND_NUMBER
 } = process.env;
 
 const postPath = {
@@ -182,7 +183,7 @@ class twilio_voice {
 
         return async (req, res) => {
 
-            userInput = "Authentication icebreaker";
+            userInput = "Authentication";
 
             const client = require('twilio')(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN);
 
@@ -194,7 +195,7 @@ class twilio_voice {
                 .create({
                     twiml: '<Response><Redirect method="POST">' + url + '</Redirect></Response>',
                     to: '+' + to_phone.replace(/[^0-9]/g, ''),
-                    from: '+46105515418'
+                    from: TWILIO_OUTBOUND_NUMBER
                 })
                 .then(call =>
                     console.log(JSON.stringify(call))
