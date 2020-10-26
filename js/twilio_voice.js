@@ -71,7 +71,7 @@ class twilio_voice {
                 if("phone" in req.query) {
                     phone = "+" + req.query["phone"].replace(/[^0-9]/g, '');
                 }
-                else if ("phone" in req.toString()) {
+                else if ("phone" in req.url.toString()) {
                     phone = '+' + req.url.replace("/outbound_call", "").replace(/[^0-9]/g, '');
                 }
                 else {
