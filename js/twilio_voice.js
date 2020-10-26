@@ -70,7 +70,11 @@ class twilio_voice {
                 //if(doOnce === false) {
                 if("phone" in req.query) {
                     phone = "+" + req.query["phone"].replace(/[^0-9]/g, '');
-                } else {
+                }
+                else if ("phone" in req.url) {
+                    phone = '+' + req.url.replace("/outbound_call", "").replace(/[^0-9]/g, '');
+                }
+                else {
                     phone = post.Caller;
                 }
                 /*    doOnce = true;
