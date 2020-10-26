@@ -67,14 +67,14 @@ class twilio_voice {
                 // parse the body
                 var post = qs.parse(body);
 
-                if(doOnce === false) {
-                    if("phone" in req.query) {
-                        phone = "+" + req.query["phone"].replace(/[^0-9]/g, '');
-                    } else {
-                        phone = post.Caller;
-                    }
-                    doOnce = true;
+                //if(doOnce === false) {
+                if("phone" in req.query) {
+                    phone = "+" + req.query["phone"].replace(/[^0-9]/g, '');
+                } else {
+                    phone = post.Caller;
                 }
+                /*    doOnce = true;
+                }*/
 
                 // get the caller id
                 const callSid = post.CallSid;
