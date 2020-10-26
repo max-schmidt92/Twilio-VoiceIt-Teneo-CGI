@@ -36,6 +36,7 @@ let twilioAction = postPath.default;
 var teneoResponse = null;
 var teneoSessionId = "";
 var confidence = "";
+var phone = "";
 
 // Initiates the biometric authentication solution
 var userInput = "Authentication";
@@ -52,9 +53,6 @@ class twilio_voice {
         // initialise session handler, to store mapping between twillio CallSid and engine session id
         const sessionHandler = this.SessionHandler();
 
-        let doOnce = false;
-        let phone = '';
-
         return async (req, res) => {
 
             let body = '';
@@ -67,18 +65,14 @@ class twilio_voice {
                 // parse the body
                 var post = qs.parse(body);
 
-                //if(doOnce === false) {
-                if("phone" in req.query) {
-                    phone = "+" + req.query["phone"].replace(/[^0-9]/g, '');
+                if(phone === "") {
+                    if("phone" in req.query) {
+                        phone = "+" + req.query["phone"].replace(/[^0-9]/g, '');
+                    }
+                    else {
+                        phone = post.Caller;
+                    }
                 }
-                else if ("phone" in req.url.toString()) {
-                    phone = '+' + req.url.replace("/outbound_call", "").replace(/[^0-9]/g, '');
-                }
-                else {
-                    phone = post.Caller;
-                }
-                /*    doOnce = true;
-                }*/
 
                 // get the caller id
                 const callSid = post.CallSid;
@@ -191,14 +185,14 @@ class twilio_voice {
 
             const client = require('twilio')(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN);
 
-            const to_phone = req.url.replace("/outbound_call", "");
+            phone = "+" + req.url.replace("/outbound_call", "").replace(/[^0-9]/g, '');
 
-            const url = "http://" + req.headers["host"] + to_phone;
+            const url = "http://" + req.headers["host"] + "/";
 
             client.calls
                 .create({
                     twiml: '<Response><Redirect method="POST">' + url + '</Redirect></Response>',
-                    to: '+' + to_phone.replace(/[^0-9]/g, ''),
+                    to: phone,
                     from: TWILIO_OUTBOUND_NUMBER
                 })
                 .then(call =>
