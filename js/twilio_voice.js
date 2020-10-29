@@ -11,7 +11,8 @@ const {
     LANGUAGE_TTS,
     TWILIO_ACCOUNT_SID,
     TWILIO_AUTH_TOKEN,
-    TWILIO_OUTBOUND_NUMBER
+    TWILIO_OUTBOUND_NUMBER,
+    START_MESSAGE
 } = process.env;
 
 const postPath = {
@@ -39,7 +40,7 @@ var confidence = "";
 var phone = "";
 
 // Initiates the biometric authentication solution
-var userInput = "Authentication";
+var userInput = START_MESSAGE;
 
 console.log("LANGUAGE_STT: " + LANGUAGE_STT);
 console.log("LANGUAGE_TTS: " + LANGUAGE_TTS);
