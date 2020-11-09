@@ -20,7 +20,7 @@ const postPath = {
 };
 
 const teneoApi = TIE.init(TENEO_ENGINE_URL);
-const twilioLanguage = LANGUAGE_STT || 'en-US'; // See: https://www.twilio.com/docs/voice/twiml/gather#languagetags
+var twilioLanguage = LANGUAGE_STT || 'en-US'; // See: https://www.twilio.com/docs/voice/twiml/gather#languagetags
 const twilioVoiceName = LANGUAGE_TTS || 'Polly.Joanna'; // See: https://www.twilio.com/docs/voice/twiml/say/text-speech#amazon-polly
 
 let twilioActions = {
@@ -118,6 +118,9 @@ class twilio_voice {
                 if(Object.keys(teneoResponse.output.parameters).length !== 0) {
                     if(Object.keys(teneoResponse.output.parameters).includes("twilioAction")) {
                         twilioAction = teneoResponse.output.parameters["twilioAction"];
+                    }
+                    if(Object.keys(teneoResponse.output.parameters).includes("twilioLanguage")) {
+                        twilioLanguage = teneoResponse.output.parameters["twilioLanguage"];
                     }
                 }
 
