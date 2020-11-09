@@ -191,7 +191,7 @@ class twilio_voice {
 
             phone = "+" + req.url.replace("/outbound_call", "").replace(/[^0-9]/g, '');
 
-            if("twilioLanguage" in req.url.toString()) {
+            if(req.url.includes("twilioLanguage")) {
                 twilioLanguage = req.url.split("&twilioLanguage=")[1]
             }
 
