@@ -191,6 +191,10 @@ class twilio_voice {
 
             phone = "+" + req.url.replace("/outbound_call", "").replace(/[^0-9]/g, '');
 
+            if("twilioLanguage" in req.url.toString()) {
+                twilioLanguage = req.url.split("&twilioLanguage=")[1]
+            }
+
             const url = "http://" + req.headers["host"] + "/";
 
             client.calls
